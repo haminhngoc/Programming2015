@@ -5,10 +5,9 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-class Main {
+public class Main {
 	static InputStream is;
 	static PrintWriter out;
-	static String INPUT = "";
 
 	public static void main(String[] args) {
 		is = System.in;
@@ -20,91 +19,6 @@ class Main {
 
 	static void solve() {
 
-		initMap();
-		StringBuilder buffer = new StringBuilder();
-		while (true) {
-			long low = nl();
-			long high = nl();
-			if (low == 0 && high == 0) {
-				break;
-			}
-			// System.out.println(solveLong(high) - (low == 0 ? 0 : solveLong(low - 1)));
-			BigInteger hValue = solve(high);
-			BigInteger lValue = (low == 0 ? BigInteger.valueOf(-1) : solve(low - 1));
-			hValue = hValue.subtract(lValue);
-			buffer.append(hValue.toString() + "\n");
-		}
-		System.out.print(buffer.toString());
-	}
-
-	static BigInteger[] mapGS;
-	static BigInteger[] mapMultiply;
-
-	static void initMap() {
-		int level = 63;
-		BigInteger two = BigInteger.valueOf(2);
-		BigInteger three = BigInteger.valueOf(3);
-		mapGS = new BigInteger[level];
-		mapMultiply = new BigInteger[level];
-
-		mapGS[0] = two;
-		mapMultiply[0] = BigInteger.valueOf(1);
-
-		for (int i = 1; i < level; i++) {
-			mapGS[i] = mapGS[i - 1].multiply(three).subtract(two);
-			mapMultiply[i] = mapMultiply[i - 1].multiply(two);
-		}
-	}
-
-	// Solution:
-	// + SB(n) number of bit 1 of n.
-	// + SO(n) = |{C(i,n) mode 2 = 1, 0<=i<=n}| = 2^SB(n)!
-	// + GS(n) = Sum(SO(i), i=0..n)
-	// => GS(2^(k+1)) = GS(2^k) + 2*GS(2^k) - 2!
-	// => GS(2^ak + 2^a[k-1] + ...) = GS(2^ak) + 2*GS(2^a[k-1]) + 4*GS(2^a[k-2])...
-	static BigInteger solve(long n) {
-		int count = 0;
-		BigInteger result = BigInteger.valueOf(0);
-		long flag = 0x100000000000l; // 2^44 > 16 * 10^11
-		for (int i = 44; i >= 0; i--) {
-			if ((n & flag) != 0) {
-				BigInteger newValue = mapGS[i].multiply(mapMultiply[count]);
-				result = result.add(newValue);
-				count++;
-			}
-			flag >>= 1;
-		}
-		return result;
-	}
-
-	/*Problem setter, don't you think about java implementation? 
-	 * It is unfair when C/C++ support ulong but java. BigInteger is so slow to process 50K items */
-	
-	static long[] mapGSLong;
-
-	static void initMapLong() {
-		int level = 63;
-		mapGSLong = new long[level];
-		mapGSLong[0] = 2;
-		for (int i = 1; i < level; i++) {
-			mapGSLong[i] = 3 * mapGSLong[i - 1] - 2;
-		}
-	}
-
-	static long solveLong(long n) {
-		int count = 0;
-		long sum = 0;
-		long flag = 0x100000000000l; // 2^44 > 16 * 10^11
-		for (int i = 44; i >= 0; i--) {
-			if ((n & flag) != 0) {
-				// sum += mapGSLong[i] * Math.pow(2, count);
-				sum += mapGSLong[i] << count;
-				count++;
-			}
-			flag >>= 1;
-		}
-
-		return sum;
 	}
 
 	/*****************************************************************

@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-class Main {
+public class Main {
 	static InputStream is;
 	static PrintWriter out;
 	static String INPUT = "";
