@@ -1,4 +1,4 @@
-Programming2015
+﻿Programming2015
 ===============
 Hà Minh Ngọc
 + http://uhunt.felix-halim.net/id/553966
@@ -7,9 +7,10 @@ Hà Minh Ngọc
 + http://vn.spoj.com/users/haminhngoc/
 
 Nguyễn Mạnh Phúc
-+ ?
-+ ?
-
++ http://uhunt.felix-halim.net/id/653507
++ http://codeforces.com/profile/nguyenmanhphuc
++ http://codeforces.com/profile/khoahoc1024
++ http://vn.spoj.com/users/nguyenmanhphuc/
 Lưu Nhật Phi
 + ?
 + 
