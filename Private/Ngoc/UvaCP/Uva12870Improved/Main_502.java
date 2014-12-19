@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main_GoodStyle {
+public class Main_502 {
 
 	static InputStream is;
 	static PrintWriter out;
@@ -19,13 +19,13 @@ public class Main_GoodStyle {
 		for (int t = 0; t < T; t++) {
 			solve();
 		}
-		//out.println(System.currentTimeMillis() - s + "ms");
+		// out.println(System.currentTimeMillis() - s + "ms");
 		out.flush();
 	}
 
-	static final int MAXSIZE = 101;
-	static int[][][] mapMaxValues = new int[MAXSIZE][MAXSIZE][MAXSIZE];
-	static int[][][] mapMinValues = new int[MAXSIZE][MAXSIZE][MAXSIZE];
+	static final int MAXSIZE = 100;
+	static int[][][] mapMaxValues = new int[MAXSIZE][MAXSIZE][MAXSIZE + 2];
+	static int[][][] mapMinValues = new int[MAXSIZE][MAXSIZE][MAXSIZE + 2];
 
 	static void solve() {
 		int R = ni();
@@ -43,59 +43,56 @@ public class Main_GoodStyle {
 		int maxValue = 100 * 1000 + 1;
 		for (int i = 0; i < MAXSIZE; i++) {
 			for (int j = 0; j < MAXSIZE; j++) {
-				Arrays.fill(mapMaxValues[i][j], -1);
+				// Arrays.fill(mapMaxValues[i][j], -1);
+				int deepij = (i < j ? i : j) + 2;
+				mapMaxValues[i][j][deepij] = -1;
 				mapMaxValues[i][j][0] = 0;
-				Arrays.fill(mapMinValues[i][j], maxValue);
+				// Arrays.fill(mapMinValues[i][j], maxValue);
+				mapMinValues[i][j][deepij] = maxValue;
 				mapMinValues[i][j][0] = 0;
 			}
 		}
 
+		int current, top, left;
 		for (int i = 0; i < R; i++) {
 			for (int j = 0; j < C; j++) {
 				int value = gridValue[i][j];
 				int[] values = mapMinValues[i][j];
 				int deepij = (i < j ? i : j) + 1;
-				if (i == 0 || j == 0) {
-					values[1] = getMin(value,
-							i > 0 ? mapMinValues[i - 1][0][1] : maxValue,
-							j > 0 ? mapMinValues[0][j - 1][1] : maxValue);
-				}
-				else {
-					int[] preValues = mapMinValues[i - 1][j - 1];
-					int[] preTopValues = mapMinValues[i - 1][j];
-					int[] preLeftValues = mapMinValues[i][j - 1];
-
-					values[1] = getMin(value, preTopValues[1], preLeftValues[1]);
-					for (int k = 2; k <= deepij; k++) {
-						values[k] = getMin(preValues[k - 1] + value,
-								preTopValues[k], preLeftValues[k]);
+				for (int k = 1; k <= deepij; k++) {
+					current = ((i > 0 && j > 0 && k > 1) ? mapMinValues[i - 1][j - 1][k - 1] : 0) + value;
+					top = i > 0 ? mapMinValues[i - 1][j][k] : maxValue;
+					left = j > 0 ? mapMinValues[i][j - 1][k] : maxValue;
+					if (current <= top && current <= left) {
+						values[k] = current;
+					}
+					else if (top <= left) {
+						values[k] = top;
+					}
+					else {
+						values[k] = left;
 					}
 				}
 
-				value = gridValue[i][j];
 				values = mapMaxValues[i][j];
-				if (i == 0 || j == 0) {
-					values[1] = getMax(value,
-							i > 0 ? mapMaxValues[i - 1][0][1] : -1,
-							j > 0 ? mapMaxValues[0][j - 1][1] : -1);
-				}
-				else {
-					int[] preValues = mapMaxValues[i - 1][j - 1];
-					int[] preTopValues = mapMaxValues[i - 1][j];
-					int[] preLeftValues = mapMaxValues[i][j - 1];
-
-					values[1] = getMax(value, preTopValues[1], preLeftValues[1]);
-					for (int k = 2; k <= deepij; k++) {
-						values[k] = getMax(preValues[k - 1] + value,
-								preTopValues[k], preLeftValues[k]);
+				for (int k = 1; k <= deepij; k++) {
+					current = ((i > 0 && j > 0 && k > 1) ? mapMaxValues[i - 1][j - 1][k - 1] : 0) + value;
+					top = i > 0 ? mapMaxValues[i - 1][j][k] : -1;
+					left = j > 0 ? mapMaxValues[i][j - 1][k] : -1;
+					if (current >= top && current >= left) {
+						values[k] = current;
+					}
+					else if (top >= left) {
+						values[k] = top;
+					}
+					else {
+						values[k] = left;
 					}
 				}
 			}
 		}
 		int[] minValues = mapMinValues[R - 1][C - 1];
-		minValues[0] = 0;
 		int[] maxValues = mapMaxValues[R - 1][C - 1];
-		maxValues[0] = 0;
 
 		int result = 0;
 		int deep2 = (deep + 1) / 2;
@@ -106,16 +103,6 @@ public class Main_GoodStyle {
 			}
 		}
 		out.println(result);
-	}
-
-	static int getMax(int x, int y, int z) {
-		x = (x > y ? x : y);
-		return (x > z ? x : z);
-	}
-
-	static int getMin(int x, int y, int z) {
-		x = (x < y ? x : y);
-		return (x < z ? x : z);
 	}
 
 	/*****************************************************************

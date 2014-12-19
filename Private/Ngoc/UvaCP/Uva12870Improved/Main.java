@@ -3,7 +3,6 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Main {
 
@@ -14,7 +13,7 @@ public class Main {
 		is = System.in;
 		out = new PrintWriter(System.out);
 
-		long s = System.currentTimeMillis();
+		//long s = System.currentTimeMillis();
 		int T = ni();
 		for (int t = 0; t < T; t++) {
 			solve();
@@ -23,88 +22,75 @@ public class Main {
 		out.flush();
 	}
 
-	static final int MAXSIZE = 100;
-	static int[][][] mapMaxValues = new int[MAXSIZE][MAXSIZE][MAXSIZE + 2];
-	static int[][][] mapMinValues = new int[MAXSIZE][MAXSIZE][MAXSIZE + 2];
+	static final int MAXSIZE = 101;
+	static int[][] mapMinValues = new int[MAXSIZE][MAXSIZE];
+	static int[][] mapMaxValues = new int[MAXSIZE][MAXSIZE];
+
+	static int[][] mapOldMinValues = new int[MAXSIZE][MAXSIZE];
+	static int[][] mapOldMaxValues = new int[MAXSIZE][MAXSIZE];
 
 	static void solve() {
 		int R = ni();
 		int C = ni();
-		int deep = Math.min(R, C) + 1;
+		int deep = Math.min(R, C);
 
 		int[][] gridValue = new int[R][C];
-
-		for (int i = 0; i < R; i++) {
-			for (int j = 0; j < C; j++) {
-				gridValue[i][j] = ni();
-			}
-		}
+		int[] minValues = new int[deep];
+		int[] maxValues = new int[deep];
 
 		int maxValue = 100 * 1000 + 1;
-		for (int i = 0; i < MAXSIZE; i++) {
-			for (int j = 0; j < MAXSIZE; j++) {
-				// Arrays.fill(mapMaxValues[i][j], -1);
-				int deepij = (i < j ? i : j) + 2;
-				mapMaxValues[i][j][deepij] = -1;
-				mapMaxValues[i][j][0] = 0;
-				// Arrays.fill(mapMinValues[i][j], maxValue);
-				mapMinValues[i][j][deepij] = maxValue;
-				mapMinValues[i][j][0] = 0;
-			}
-		}
-		int x, y, z;
-
 		for (int i = 0; i < R; i++) {
 			for (int j = 0; j < C; j++) {
-				int value = gridValue[i][j];
-				int[] values = mapMinValues[i][j];
-				int deepij = (i < j ? i : j) + 1;
-				if (i == 0 || j == 0) {
-					y = i > 0 ? mapMinValues[i - 1][0][1] : maxValue;
-					z = j > 0 ? mapMinValues[0][j - 1][1] : maxValue;
-					values[1] = value < y ? (value < z ? value : z) : (y < z ? y : z);
-				}
-				else {
-					y = mapMinValues[i - 1][j][1];
-					z = mapMinValues[i][j - 1][1];
-					values[1] = value < y ? (value < z ? value : z) : (y < z ? y : z);
-					for (int k = 2; k <= deepij; k++) {
-						x = mapMinValues[i - 1][j - 1][k - 1] + value;
-						y = mapMinValues[i - 1][j][k];
-						z = mapMinValues[i][j - 1][k];
-						values[k] = x < y ? (x < z ? x : z) : (y < z ? y : z);
-					}
-				}
+				mapMinValues[i][j] = mapMaxValues[i][j] = gridValue[i][j] = ni();
+			}
+			Arrays.fill(mapMinValues[i], maxValue);
+			Arrays.fill(mapOldMinValues[i], maxValue);
+			Arrays.fill(mapMaxValues[i], -1);
+			Arrays.fill(mapOldMaxValues[i], -1);
+		}
 
-				value = gridValue[i][j];
-				values = mapMaxValues[i][j];
-				if (i == 0 || j == 0) {
-					y = i > 0 ? mapMaxValues[i - 1][0][1] : -1;
-					z = j > 0 ? mapMaxValues[0][j - 1][1] : -1;
-					values[1] = value > y ? (value > z ? value : z) : (y > z ? y : z);
-				}
-				else {
-					y = mapMaxValues[i - 1][j][1];
-					z = mapMaxValues[i][j - 1][1];
-					values[1] = value > y ? (value > z ? value : z) : (y > z ? y : z);
-					for (int k = 2; k <= deepij; k++) {
-						x = mapMaxValues[i - 1][j - 1][k - 1] + value;
-						y = mapMaxValues[i - 1][j][k];
-						z = mapMaxValues[i][j - 1][k];
-						values[k] = x > y ? (x > z ? x : z) : (y > z ? y : z);
+		int pre, top, left;
+		for (int d = 0; d < deep; d++) {
+			int min = maxValue;
+			int max = -1;
+			for (int i = d; i < R; i++) {
+				for (int j = d; j < C; j++) {
+					int value = gridValue[i][j];
+
+					pre = ((d > 0 && i > 0 && j > 0) ? mapOldMinValues[i - 1][j - 1] : 0) + value;
+					top = i > d ? mapMinValues[i - 1][j] : maxValue;
+					left = j > d ? mapMinValues[i][j - 1] : maxValue;
+					pre = (pre <= top && pre <= left) ? pre : (top <= left ? top : left);
+					mapMinValues[i][j] = pre;
+					if (pre < min) {
+						min = pre;
+					}
+
+					pre = ((d > 0 && i > 0 && j > 0) ? mapOldMaxValues[i - 1][j - 1] : 0) + value;
+					top = i > d ? mapMaxValues[i - 1][j] : -1;
+					left = j > d ? mapMaxValues[i][j - 1] : -1;
+					pre = (pre >= top && pre >= left) ? pre : (top >= left ? top : left);
+					mapMaxValues[i][j] = pre;
+					if (pre > max) {
+						max = pre;
 					}
 				}
 			}
+
+			for (int i = d; i < R; i++) {
+				for (int j = d; j < C; j++) {
+					mapOldMinValues[i][j] = mapMinValues[i][j];
+					mapOldMaxValues[i][j] = mapMaxValues[i][j];
+				}
+			}
+			minValues[d] = min;
+			maxValues[d] = max;
 		}
-		int[] minValues = mapMinValues[R - 1][C - 1];
-		minValues[0] = 0;
-		int[] maxValues = mapMaxValues[R - 1][C - 1];
-		maxValues[0] = 0;
 
 		int result = 0;
-		int deep2 = (deep + 1) / 2;
+		int deep2 = deep / 2;
 		for (int i = 0; i < deep2; i++) {
-			int newValue = maxValues[i] - minValues[i * 2];
+			int newValue = maxValues[i] - minValues[2 * i + 1];
 			if (newValue > result) {
 				result = newValue;
 			}
