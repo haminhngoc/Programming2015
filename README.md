@@ -11,10 +11,13 @@ Nguyễn Mạnh Phúc
 + http://codeforces.com/profile/nguyenmanhphuc
 + http://codeforces.com/profile/khoahoc1024
 + http://vn.spoj.com/users/nguyenmanhphuc/
+
 Lưu Nhật Phi
+
 + http://uhunt.felix-halim.net/id/568336
 + http://codeforces.com/profile/philuu
 + http://vn.spoj.com/users/philuu
+
 Trần Công Duy
 + ?
 + 
