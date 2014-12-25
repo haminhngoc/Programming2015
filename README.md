@@ -19,8 +19,9 @@ Lưu Nhật Phi
 + http://vn.spoj.com/users/philuu
 
 Trần Công Duy
-+ ?
-+ 
++ http://uhunt.felix-halim.net/id/607338
++ http://codeforces.com/profile/trancongduy
++ http://vn.spoj.com/users/duytran
 
 Nguyễn Hồng Khánh
 + ?
