@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-public class Main {
+public class Main_309 {
 
 	static InputStream is;
 	static PrintWriter out;
