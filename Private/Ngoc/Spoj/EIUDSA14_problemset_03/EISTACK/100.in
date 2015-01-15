@@ -1,0 +1,13 @@
+10 5 10
+-613 -112 209 558 625 
+pop
+peek
+pop
+push 209
+push 813
+sum
+sum
+push -451
+sum
+push -999
+

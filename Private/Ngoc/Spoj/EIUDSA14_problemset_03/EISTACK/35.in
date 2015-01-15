@@ -1,0 +1,1003 @@
+500 500 1000
+-684 -997 -370 18 -548 -786 -540 -277 199 779 -732 -942 70 779 -469 -808 -687 -433 881 792 426 127 30 -364 -170 712 192 665 456 476 508 839 824 977 -353 339 90 156 375 407 493 -333 684 437 656 -705 794 800 -744 -413 286 -663 748 -185 -521 439 -994 898 187 213 -959 37 -961 -649 -746 -566 -370 -989 -909 -264 -10 278 -560 -428 -956 565 -412 -43 74 721 -841 195 537 537 116 408 17 -168 559 851 -419 -610 888 -238 358 631 -329 -348 767 -922 -514 676 486 471 -59 992 -977 -354 110 -139 -497 -791 -309 -332 175 -543 -665 2 -927 -983 -194 447 -777 -792 900 878 861 294 371 672 -768 461 518 -526 -291 607 -466 -28 210 -136 232 -577 190 120 355 -360 -144 772 310 587 649 -554 -122 753 564 446 -799 114 -613 380 -785 604 -431 -456 546 766 113 439 -129 -476 -395 -915 762 866 288 679 85 647 -23 595 -794 660 506 709 -564 -294 407 -391 -584 433 -458 -633 484 422 563 -749 453 187 194 -7 682 -449 626 -936 -161 -793 -444 -250 343 173 806 805 105 336 -139 928 898 285 159 -621 -544 275 507 693 219 263 -381 -374 -441 -267 431 211 248 -725 608 150 -36 -260 427 599 711 -792 -893 -118 -837 958 -433 -350 -847 -815 -418 -427 797 -711 355 -227 68 227 -358 915 24 -376 -271 93 373 157 804 491 -462 28 -434 166 991 -712 -734 232 -729 -789 812 -761 786 -12 -952 595 271 571 -136 -488 -367 -326 408 -856 -241 662 353 339 -145 -679 892 -262 890 384 -55 830 -204 47 921 21 -786 -270 302 769 -202 842 289 -604 341 -603 834 328 -684 -975 446 199 -167 -906 -628 -505 452 -518 -31 -748 816 860 -605 676 -349 -734 -913 -499 -677 216 -48 415 -174 631 -353 -77 -111 466 899 669 -338 59 -587 408 383 -26 595 590 -641 -638 62 808 -396 731 -320 267 585 -577 780 -154 -360 -960 -924 349 865 -349 -170 79 -502 -370 843 26 -794 713 971 -380 -980 -977 -985 284 176 621 123 -201 578 487 58 -96 225 738 152 475 573 -636 -922 128 485 781 161 -824 -764 133 414 456 820 381 162 785 -262 993 -257 508 377 -721 533 944 120 311 -654 -597 399 728 109 887 54 -257 638 591 -442 -839 -670 -111 937 -653 636 597 558 -289 -708 34 322 522 -549 606 -718 -362 106 490 211 -927 481 354 224 249 444 991 -800 -758 -596 250 471 362 649 713 985 10 628 185 -1000 906 297 -741 257 -496 309 -21 530 707 -412 919 -537 -188 -410 894 -296 49 461 -67 
+pop
+push 180
+peek
+push -939
+push 919
+push -41
+sum
+push -899
+average
+push -807
+push 943
+pop
+push -955
+push -340
+peek
+average
+push -449
+sum
+push -184
+peek
+push 308
+average
+push -586
+push 217
+push 5
+average
+pop
+push 749
+average
+sum
+push 992
+push -681
+sum
+push 513
+average
+push -745
+average
+average
+peek
+peek
+push -274
+push -408
+pop
+peek
+push 838
+push 741
+peek
+push -222
+pop
+sum
+pop
+average
+push 410
+pop
+average
+push 721
+peek
+push -234
+push 643
+push 38
+peek
+push 965
+pop
+push -733
+sum
+push -57
+push -148
+push -559
+peek
+push 869
+push -814
+push -484
+peek
+push -441
+push -236
+peek
+push 737
+push 786
+peek
+pop
+push -270
+average
+push -540
+sum
+push -572
+average
+push -571
+sum
+push -466
+peek
+push 400
+push -412
+push 327
+average
+average
+average
+peek
+sum
+push -100
+push -586
+push -310
+push 69
+pop
+push -745
+push -599
+average
+peek
+average
+pop
+peek
+push 650
+push 129
+pop
+push -451
+average
+pop
+push -576
+push -115
+push 482
+push -539
+push 226
+sum
+push 248
+average
+peek
+pop
+push 18
+sum
+average
+sum
+peek
+sum
+average
+push 897
+sum
+push -419
+push 931
+pop
+push 885
+push -168
+push 460
+push 15
+peek
+push -24
+pop
+push 549
+push 389
+push -208
+push -96
+average
+sum
+pop
+push -447
+peek
+push 151
+push -551
+push 922
+push 746
+push 14
+pop
+sum
+sum
+push -288
+average
+sum
+push 588
+average
+sum
+push -547
+push 301
+push -50
+push 685
+push 620
+average
+average
+pop
+push -983
+pop
+peek
+push 156
+sum
+push -773
+push -355
+push 953
+average
+push 512
+sum
+push 127
+pop
+pop
+push -974
+peek
+push -971
+sum
+average
+pop
+push -449
+push 98
+push -55
+sum
+push 547
+peek
+push -762
+push 867
+push -598
+push 156
+push 644
+average
+push 760
+push 358
+pop
+pop
+average
+sum
+peek
+push 532
+push 50
+push 94
+push 129
+push -700
+push 213
+push -69
+peek
+pop
+sum
+push -581
+push -563
+push -585
+push 849
+pop
+average
+average
+peek
+push 366
+pop
+push 743
+push -215
+push 988
+average
+push -46
+average
+pop
+peek
+sum
+push -923
+pop
+push 3
+push -634
+push -156
+pop
+peek
+sum
+average
+sum
+push -480
+pop
+push 435
+sum
+peek
+push -766
+push -600
+pop
+push 174
+sum
+push -863
+pop
+peek
+average
+push 908
+push 569
+sum
+push 487
+peek
+sum
+pop
+push -496
+peek
+average
+push -945
+peek
+sum
+pop
+sum
+peek
+push 798
+push 50
+pop
+push -731
+push 966
+push 507
+push 790
+pop
+push 995
+push -286
+pop
+pop
+push -370
+push 600
+sum
+push 647
+peek
+peek
+peek
+push -204
+push -489
+sum
+average
+push 6
+pop
+average
+push 511
+push -512
+push 754
+push -163
+peek
+push -227
+push 132
+push -87
+push 497
+push -998
+sum
+pop
+pop
+pop
+push 548
+push -87
+push 659
+push -990
+push -583
+push -121
+average
+push 968
+sum
+push 828
+pop
+push -220
+peek
+push 775
+pop
+push -713
+average
+peek
+push -757
+push -212
+peek
+peek
+average
+push 237
+push -274
+push 156
+push -268
+push 760
+push -184
+push -745
+average
+pop
+average
+push 891
+average
+push 279
+push 916
+push 355
+push 264
+pop
+pop
+peek
+push 446
+average
+average
+sum
+peek
+push 206
+average
+push 397
+average
+sum
+push 962
+push -183
+sum
+push 216
+sum
+push 299
+push 136
+push 468
+push 51
+push 96
+push -594
+sum
+push -855
+peek
+push 138
+push 910
+pop
+average
+push 88
+pop
+push 472
+push 394
+push -964
+average
+pop
+sum
+pop
+push 827
+average
+peek
+push 559
+push -91
+pop
+push 179
+peek
+push 735
+sum
+push -848
+push 41
+sum
+push 106
+push -117
+pop
+sum
+average
+push 373
+push -323
+push -582
+pop
+push 429
+push 380
+peek
+push 244
+push 165
+peek
+peek
+pop
+average
+pop
+push 780
+average
+push -852
+peek
+peek
+peek
+push -844
+push 288
+sum
+sum
+push 616
+push -574
+push 81
+push 375
+average
+peek
+push 400
+average
+peek
+peek
+peek
+push -970
+push 973
+push 792
+sum
+push -696
+push 933
+pop
+push -461
+peek
+average
+push -159
+push -316
+push -947
+push -111
+pop
+average
+push -687
+sum
+push 677
+peek
+pop
+push -757
+push 896
+push -963
+push 418
+peek
+average
+pop
+push 82
+sum
+pop
+peek
+peek
+push -821
+push 27
+pop
+push -927
+pop
+push -864
+push -935
+pop
+push 173
+push -995
+sum
+push -844
+push 120
+push 243
+pop
+push -388
+push -556
+sum
+average
+push -764
+push 372
+push 487
+push -562
+push -687
+average
+peek
+sum
+push 894
+push -583
+push 835
+average
+push 90
+push 368
+push -826
+push 277
+push -337
+push -921
+peek
+peek
+push 343
+average
+push -549
+sum
+pop
+average
+push -236
+push 505
+push -803
+push -551
+push -838
+push -703
+push 88
+average
+pop
+pop
+average
+sum
+pop
+average
+pop
+push 656
+sum
+push 469
+push 255
+push 603
+push 712
+push -142
+peek
+push -931
+push 348
+sum
+push 382
+push 436
+peek
+average
+pop
+pop
+average
+peek
+push 76
+push 987
+push 411
+peek
+push 713
+push 622
+sum
+push 639
+push -558
+average
+sum
+pop
+push -309
+push -724
+peek
+push -2
+push 154
+push 43
+sum
+push -6
+peek
+average
+push -285
+push 338
+push -624
+push 970
+push 848
+push 733
+push 118
+pop
+push -263
+average
+pop
+push -234
+sum
+average
+average
+average
+push -751
+pop
+push 783
+push -383
+average
+sum
+average
+push -761
+average
+peek
+push -368
+average
+push 672
+pop
+average
+peek
+average
+sum
+sum
+push 159
+push 803
+push 786
+push 648
+average
+push 163
+push -944
+pop
+sum
+push -109
+pop
+peek
+pop
+push 1
+peek
+sum
+pop
+average
+pop
+pop
+pop
+push 342
+push -718
+push -712
+pop
+sum
+push 752
+peek
+push 881
+pop
+push 256
+push 784
+push 764
+push 880
+pop
+push 762
+push -312
+average
+peek
+peek
+push -560
+push -999
+push -340
+push 779
+push 984
+push 817
+sum
+peek
+push -800
+pop
+push 636
+push 910
+push 953
+push 834
+push -687
+push 304
+push 676
+push -491
+push 528
+sum
+sum
+push -764
+push 436
+push 222
+push -80
+pop
+push -894
+sum
+push -209
+average
+push 758
+push -324
+sum
+peek
+average
+push 4
+push 434
+push -59
+push 683
+push -119
+sum
+sum
+pop
+push -893
+sum
+push 811
+sum
+peek
+push -735
+pop
+push 966
+push 803
+sum
+sum
+average
+push 863
+push 623
+push 988
+push 645
+push -310
+push -794
+pop
+pop
+peek
+push 586
+pop
+pop
+sum
+push -624
+push -683
+pop
+peek
+peek
+pop
+peek
+push 22
+push -279
+push -387
+push 407
+peek
+push -847
+push -624
+push -715
+sum
+peek
+push 772
+sum
+pop
+push -946
+push 599
+push -775
+push -484
+push -733
+peek
+push 667
+push 71
+peek
+average
+push 798
+push 751
+sum
+push 328
+average
+push 795
+push -315
+pop
+push 794
+push -760
+push -640
+average
+push 494
+pop
+push 21
+push -961
+push -770
+sum
+push 190
+push -244
+push 752
+push -707
+sum
+push -513
+push 905
+push 79
+push -247
+pop
+push -776
+sum
+pop
+push 128
+push 554
+pop
+average
+peek
+push -307
+peek
+pop
+pop
+peek
+push -180
+sum
+push -782
+pop
+push -770
+push 628
+push 825
+pop
+push 734
+push 787
+sum
+push 965
+push 908
+average
+average
+pop
+push -328
+push -658
+pop
+push -899
+pop
+push -726
+push -366
+push 273
+push 439
+sum
+pop
+push -77
+push 16
+push 718
+average
+push -427
+push 903
+push -376
+average
+push 763
+average
+push 537
+push -602
+push -616
+push -581
+pop
+push 141
+pop
+peek
+push 875
+push 751
+sum
+peek
+sum
+pop
+peek
+sum
+push 827
+push -77
+push -281
+push 185
+push 347
+push -364
+push -880
+push 331
+push -889
+peek
+sum
+pop
+push 36
+push -687
+push 900
+sum
+push -594
+peek
+push 763
+peek
+average
+push 617
+push 292
+peek
+sum
+average
+push -114
+push 509
+push 93
+pop
+pop
+sum
+push 570
+sum
+sum
+push 227
+average
+average
+push 727
+peek
+push -1000
+push -848
+push -319
+push 754
+push -209
+push -545
+push -778
+pop
+push -949
+sum
+push -991
+peek
+sum
+sum
+push 727
+sum
+push -971
+pop
+push 336
+push -256
+push 740
+push -398
+push -788
+push -468
+push -160
+peek
+average
+peek
+average
+pop
+push -517
+push -487
+average
+sum
+push -267
+push 232
+push 993
+sum
+peek
+push 83
+push 294
+push -587
+sum
+push -132
+push -60
+average
+push 513
+push 82
+push 408
+average
+peek
+pop
+push -436
+push -12
+peek
+push -920
+average
+peek
+push -68
+average
+push -802
+sum
+push 958
+pop
+sum
+pop
+push -754
+push 477
+peek
+push 605
+sum
+pop
+push -309
+pop
+push -318
+push -531
+average
+push 198
+push -113
+push 435
+average
+push 245
+sum
+push 684
+sum
+push -180
+pop
+sum
+push 562
+push 680
+average
+average
+sum
+push 819
+pop
+sum
+push -628
+pop
+pop
+push 489
+push -450
+average
+average
+
