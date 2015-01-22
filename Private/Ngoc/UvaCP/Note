@@ -3,3 +3,47 @@ Read/Write file: Uva10114/loan.java
 Read end of input (Old style): Uva10339-WatchingWatches
 Limitation: Input length must less than 400KB
 
+
+	/*****************************************************************
+	 ******************** TIME UTILITIES *******************************
+	 *****************************************************************/
+
+	static long startTime = 0;
+	static long preLogTime = 0;
+
+	static void logTime(String lable) {
+		if(!test) return;
+		long current = System.currentTimeMillis();
+		if (startTime != 0) {
+			println(lable, " - From start:", (current - startTime),
+					"- From previous:", (current - preLogTime));
+		} else {
+			startTime = current;
+		}
+		preLogTime = current;
+	}
+
+
+	static void logTime(String lable) {
+		if (false) {
+			return;
+		}
+		long current = System.currentTimeMillis();
+		if (startTime != 0) {
+			System.out.println(lable + " - From start: " + (current - startTime) +
+					"- From previous: " + (current - preLogTime));
+		} else {
+			startTime = current;
+		}
+		preLogTime = current;
+	}
+	
+	logTime("");
+
+
+	public static int randBetween(int start, int end) {
+		if (start == end) {
+			end++;
+		}
+		return start + (int) Math.floor(Math.random() * (end - start - 0.000001));
+	}

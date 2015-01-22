@@ -1,5 +1,6 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.IntBuffer;
 import java.util.Scanner;
 
 class LinkedListSolution<T extends Number> {
@@ -19,7 +20,7 @@ class LinkedListSolution<T extends Number> {
 		return result.toString();
 	}
 
-	static String basePath = "D:\\DSA\\";
+	static String basePath = "D:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\EIUDSA14_problemset_03\\EILINKED\\";
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -108,6 +109,17 @@ class LinkedListSolution<T extends Number> {
 		generate(12, 100000, "insertAt removeAt removeFirst");
 	}
 
+	public static void main_gen2(String[] args) throws IOException {
+		generate_simple(0, 0, 10, "insertAt insertAt insertAt insertAt insertAt insertAt getAt");
+		generate_simple(1, 0, 10, "insertAt insertAt insertAt insertAt insertAt insertAt getAt");
+		generate_simple(2, 0, 100, "insertAt insertAt insertAt insertAt insertAt insertAt getAt");
+		generate_simple(3, 0, 100, "insertAt insertAt insertAt insertAt insertAt insertAt getAt");
+		generate_simple(4, 0, 1000, "insertAt insertAt insertAt insertAt insertAt insertAt getAt");
+		generate_simple(5, 0, 1000, "insertAt insertAt insertAt insertAt insertAt insertAt getAt");
+		generate_simple(6, 0, 10000, "insertAt insertAt insertAt insertAt insertAt insertAt getAt");
+		generate_simple(7, 0, 10000, "insertAt insertAt insertAt insertAt insertAt insertAt getAt");
+	}
+
 	public static void generate(int id, int n, String mode) throws IOException {
 
 		FileWriter in = new FileWriter(basePath + id + ".in");
@@ -180,6 +192,43 @@ class LinkedListSolution<T extends Number> {
 
 		writeCheck(list, in, out);
 		// list.print(in);
+		in.close();
+		out.close();
+	}
+
+	public static void generate_simple(int id, int init, int nCommand, String commandString) throws IOException {
+		FileWriter in = new FileWriter(basePath + id + ".in");
+		FileWriter out = new FileWriter(basePath + id + ".out");
+		StringBuffer inBuffer = new StringBuffer();
+		StringBuffer outBuffer = new StringBuffer();
+
+		int minRange = -1000;
+		int maxRange = 1000;
+
+		String[] commands = commandString.split(" ");
+		inBuffer.append("0 " + nCommand + "\r\n");
+
+		LinkedListSolution<Integer> list = new LinkedListSolution<Integer>();
+
+		int nCommandType = commands.length;
+		for (int i = 0; i < nCommand; i++) {
+			String command = commands[randBetween(0, nCommandType)];
+
+			if (command.equals("insertAt")) {
+				int number = randBetween(minRange, maxRange);
+				inBuffer.append("insertAt 0 " + number + "\r\n");
+				list.insertAt(0, number);
+			}
+
+			if (command.equals("getAt")) {
+				int index = randBetween(0, list.size);
+				inBuffer.append("getAt " + index + "\r\n");
+				outBuffer.append(list.getAt(index) + "\r\n");
+			}
+		}
+
+		in.write(inBuffer.toString() + "\r\n");
+		out.write(outBuffer.toString() + "\r\n");
 		in.close();
 		out.close();
 	}
