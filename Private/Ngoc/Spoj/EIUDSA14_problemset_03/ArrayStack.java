@@ -4,13 +4,46 @@ import java.util.Scanner;
 import java.util.Stack;
 
 class ArrayStack<T> {
-	public static void main(String[] args) {
+	public static void main_s(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		int m = sc.nextInt();
+		int k = sc.nextInt();
 
-		ArrayStack<Integer> stack = new ArrayStack<Integer>(n);
-		// You code here
+		ArrayStackSolution<Integer> stack = new ArrayStackSolution<Integer>(n);
+		for (int i = 0; i < m; i++) {
+			if (i < m - n) {
+				sc.nextInt();
+			}
+			else {
+				stack.push(sc.nextInt());
+			}
+		}
+
+		for (int i = 0; i < k; i++) {
+			String command = sc.next();
+
+			if (command.equals("push")) {
+				int value = sc.nextInt();
+				stack.push(value);
+			}
+
+			if (command.equals("pop")) {
+				System.out.println(stack.pop());
+			}
+
+			if (command.equals("peek")) {
+				System.out.println(stack.peek());
+			}
+
+			if (command.equals("sum")) {
+				System.out.println(stack.sum());
+			}
+
+			if (command.equals("average")) {
+				System.out.println(stack.average());
+			}
+		}
 	}
 
 	// Your code here
@@ -22,6 +55,18 @@ class ArrayStack<T> {
 	}
 
 	public int count() {
+		// Your code here
+		return 0;
+	}
+
+	public double sum() {
+		// Your code here
+		// T number;
+		// number.doubleValue();
+		return 0;
+	}
+
+	public double average() {
 		// Your code here
 		return 0;
 	}

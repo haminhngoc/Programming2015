@@ -11,8 +11,8 @@ class EIUGIFTS {
 		for (int i = 0; i < N; i++) {
 			a[i] = sc.nextInt();
 		}
-		// solution_fast(a, N, K);
-		solution_simple(a, N, K);
+		solution_fast(a, N, K);
+		// solution_simple(a, N, K);
 		sc.close();
 	}
 
