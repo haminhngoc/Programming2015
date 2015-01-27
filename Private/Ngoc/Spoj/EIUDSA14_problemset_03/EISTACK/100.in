@@ -1,13 +1,13 @@
 10 5 10
--613 -112 209 558 625 
-pop
+638 820 -865 926 932 
+push 602
+push -679
+sum
 peek
 pop
-push 209
-push 813
-sum
-sum
-push -451
-sum
-push -999
+peek
+push -909
+push 423
+average
+peek
 

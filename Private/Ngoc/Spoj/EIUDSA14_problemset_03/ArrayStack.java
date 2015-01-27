@@ -1,9 +1,6 @@
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.Stack;
 
-class ArrayStack<T> {
+class ArrayStack<T extends Number> {
 	public static void main_s(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
@@ -12,12 +9,7 @@ class ArrayStack<T> {
 
 		ArrayStackSolution<Integer> stack = new ArrayStackSolution<Integer>(n);
 		for (int i = 0; i < m; i++) {
-			if (i < m - n) {
-				sc.nextInt();
-			}
-			else {
-				stack.push(sc.nextInt());
-			}
+			stack.push(sc.nextInt());
 		}
 
 		for (int i = 0; i < k; i++) {

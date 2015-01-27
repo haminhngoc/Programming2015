@@ -46,47 +46,52 @@ class ArrayStackSolution<T extends Number> {
 	}
 
 	public static void main(String[] args) throws IOException {
-		genTest(0, 1000, 0, 1, "peek");
-		genTest(1, 1000, 50, 1, "peek");
-		genTest(2, 1000, 500, 1, "peek");
-		genTest(3, 1000, 0, 1, "pop");
-		genTest(4, 1000, 50, 5, "pop");
-		genTest(5, 1000, 500, 10, "pop");
-		genTest(6, 1000, 1, 1, "average");
-		genTest(7, 1000, 50, 1, "average");
-		genTest(8, 1000, 500, 1, "average");
-		genTest(9, 1000, 0, 1, "sum");
-		genTest(10, 1000, 50, 1, "sum");
-		genTest(11, 1000, 500, 1, "sum");
-
-		genTest(12, 1000, 500, 500, "push push push push peek pop average sum");
-		genTest(13, 1000, 500, 500, "push push push push peek pop average sum");
-		genTest(14, 1000, 500, 500, "push push push push peek pop average sum");
-		genTest(15, 1000, 500, 500, "push push push push peek pop average sum");
-		genTest(16, 1000, 500, 500, "push push push push peek pop average sum");
-		genTest(17, 1000, 500, 500, "push push push push peek pop average sum");
-		genTest(18, 1000, 500, 500, "push push push push peek pop average sum");
-		genTest(19, 1000, 500, 500, "push push push push peek pop average sum");
-		genTest(20, 1000, 500, 500, "push push push push peek pop average sum");
-
-		genTest(21, 1, 50, 50, "push push push push peek pop average sum");
-		genTest(22, 1, 50, 50, "push push push push peek pop average sum");
-		genTest(23, 5, 50, 50, "push push push push peek pop average sum");
-		genTest(24, 5, 50, 50, "push push push push peek pop average sum");
-		genTest(25, 10, 50, 50, "push push push push peek pop average sum");
-
-		genTest(31, 500, 50, 1000, "push push push push peek pop average sum");
-		genTest(32, 500, 500, 2000, "peek pop pop pop pop pop average sum");
-		genTest(33, 500, 5000, 1000, "push push push push peek pop average sum");
-
-		genTest(34, 500, 10000, 1000, "push push push push peek pop average sum");
-		genTest(35, 500, 500, 1000, "push push push push peek pop average sum");
-
-		genTest(26, 100000, 100000, 30000, "push push push push peek pop average sum");
-		genTest(27, 100000, 100000, 30000, "push push push push peek pop average sum");
-		genTest(28, 100000, 100000, 30000, "push push push push peek pop average sum");
-		genTest(29, 100000, 100000, 30000, "push push push push peek pop average sum");
-		genTest(30, 100000, 100000, 30000, "push push push push peek pop average sum");
+		// genTest(0, 1000, 0, 1, "peek");
+		// genTest(1, 1000, 50, 1, "peek");
+		// genTest(2, 1000, 500, 1, "peek");
+		// genTest(3, 1000, 0, 1, "pop");
+		// genTest(4, 1000, 50, 5, "pop");
+		// genTest(5, 1000, 500, 10, "pop");
+		// genTest(6, 1000, 1, 1, "average");
+		// genTest(7, 1000, 50, 1, "average");
+		// genTest(8, 100000, 90000, 90000, "average");
+		// genTest(9, 1000, 0, 1, "sum");
+		// genTest(10, 1000, 50, 1, "sum");
+		// genTest(11, 100000, 90000, 90000, "sum");
+		//
+		// genTest(12, 1000, 500, 500, "push push push push peek pop average sum");
+		// genTest(13, 1000, 500, 500, "push push push push peek pop average sum");
+		// genTest(14, 1000, 500, 500, "push push push push peek pop average sum");
+		// genTest(15, 1000, 500, 500, "push push push push peek pop average sum");
+		// genTest(16, 1000, 500, 500, "push push push push peek pop average sum");
+		// genTest(17, 200000, 50000, 50000, "push peek pop average sum average sum");
+		// genTest(18, 200000, 100000, 50000, "push peek pop average sum average sum");
+		// genTest(19, 200000, 50000, 100000, "push peek pop average sum average sum");
+		// genTest(20, 200000, 100000, 100000, "push peek pop average sum average sum");
+		//
+		// genTest(21, 1, 50, 50, "push push push push peek pop average sum");
+		// genTest(22, 1, 50, 50, "push push push push peek pop average sum");
+		// genTest(23, 5, 50, 50, "push push push push peek pop average sum");
+		// genTest(24, 5, 50, 50, "push push push push peek pop average sum");
+		// genTest(25, 10, 50, 50, "push push push push peek pop average sum");
+		//
+		// genTest(31, 500, 50, 1000, "push push push push peek pop average sum");
+		// genTest(32, 500, 500, 2000, "peek pop pop pop pop pop average sum");
+		// genTest(33, 500, 5000, 1000, "push push push push peek pop average sum");
+		//
+		// genTest(34, 500, 10000, 1000, "push push push push peek pop average sum");
+		// genTest(35, 500, 500, 1000, "push push push push peek pop average sum");
+		//
+		// genTest(26, 100000, 100000, 30000, "push push push push peek pop average sum");
+		// genTest(27, 100000, 100000, 30000, "push push push push peek pop average sum");
+		// genTest(28, 100000, 100000, 30000, "push push push push peek pop average sum");
+		// genTest(29, 200000, 100000, 100000, "push peek pop average sum");
+		// genTest(30, 200000, 100000, 100000, "push peek pop average sum average");
+		// genTest(29, 200000, 100000, 100000, "push peek pop average sum");
+		genTest(36, 20000, 10000, 10000, "push pop pop peek average sum");
+		genTest(37, 20000, 10000, 10000, "push pop pop peek average sum");
+		genTest(38, 20000, 10000, 10000, "push pop pop peek average sum");
+		genTest(39, 20000, 10000, 10000, "push pop pop peek average sum");
 
 		genTest(100, 10, 5, 10, "push push push push peek pop average sum");
 	}
