@@ -7,8 +7,40 @@ public class GEN {
 		// gen_EIUAPPEA(9, 100000, 1000000, 1000000 + 100000);
 		// gen_EIUAPPEA(10, 100000, 1000000, 1000000 + 100000);
 		// gen_EIUAPPEA(11, 6, 1, 4);
-		
-		
+
+		// String[] names1 = { "Hung", "Tien", "Toan", "Tuan" };
+		// String[] names2 = { "Ngoc", "Ha", "Minh", "Hanh", "Tu", "Nguyen", "Duy", "Phuc", "Quan",
+		// "Son", "Toan", "Phi", "Khanh", "Hung", "Hau", "Tien", "Toan", "Thinh",
+		// "Tuan" };
+		// String[] names3 = new String[1000];
+		// for (int i = 0; i < names3.length; i++) {
+		// names3[i] = randString(1, 20);
+		// }
+		// gen_EIUFREQU(0, names1, 10);
+		// gen_EIUFREQU(1, names1, 3);
+		//
+		// gen_EIUFREQU(2, names2, 5);
+		// gen_EIUFREQU(3, names2, 50);
+		// gen_EIUFREQU(4, names2, 500);
+		// gen_EIUFREQU(11, names2, 100000);
+		// gen_EIUFREQU(12, names2, 100000);
+		//
+		// gen_EIUFREQU(5, names3, 10);
+		// gen_EIUFREQU(6, names3, 100);
+		// gen_EIUFREQU(7, names3, 1000);
+		// gen_EIUFREQU(8, names3, 10000);
+		// gen_EIUFREQU(9, names3, 100000);
+		// gen_EIUFREQU(10, names3, 100000);
+
+	}
+
+	public static String randString(int minLen, int maxLen) {
+		int len = randBetween(minLen, maxLen);
+		char[] chars = new char[len];
+		for (int i = 0; i < len; i++) {
+			chars[i] = (char) randBetween('a', 'z' + 1);
+		}
+		return new String(chars);
 	}
 
 	public static int randBetween(int start, int end) {
@@ -22,7 +54,7 @@ public class GEN {
 		String root = "D:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\";
 		String basePath = root + "EIUDSA14_Problemset_05\\";
 		String classPath = root + "bin\\";
-		String javaClass = "EIUAPPEA";
+		String javaClass = "EIUFREQU";
 
 		String outPath = basePath + javaClass + "\\";
 		File theDir = new File(outPath);
@@ -34,8 +66,8 @@ public class GEN {
 		StringBuffer inBuffer = new StringBuffer();
 		inBuffer.append(n + "\r\n");
 		for (int i = 0; i < n; i++) {
-			int value = randBetween(0, names.length);
-			inBuffer.append(value + " ");
+			int index = randBetween(0, names.length);
+			inBuffer.append(names[index] + " ");
 		}
 
 		in.write(inBuffer.toString() + "\r\n");
