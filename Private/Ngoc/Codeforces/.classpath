@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="FBHackerCup_Round2/" kind="src" path="FBHackerCup_Round1"/>
 	<classpathentry kind="src" path="FBHackerCup_Round2"/>
+	<classpathentry kind="src" path="FBHackerCup_Round3"/>
+	<classpathentry kind="src" path="Rockethon_2015"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

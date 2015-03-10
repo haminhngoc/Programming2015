@@ -4,9 +4,9 @@ import java.io.FileWriter;
 public class GEN {
 
 	public static void main(String[] args) throws Exception {
-		// gen_EIUAPPEA(9, 100000, 1000000, 1000000 + 100000);
-		// gen_EIUAPPEA(10, 100000, 1000000, 1000000 + 100000);
-		// gen_EIUAPPEA(11, 6, 1, 4);
+		 gen_EIUAPPEA(9, 100000, 1000000, 1000000 + 100000);
+		 gen_EIUAPPEA(10, 100000, 1000000, 1000000 + 100000);
+		 gen_EIUAPPEA(11, 6, 1, 4);
 
 		// String[] names1 = { "Hung", "Tien", "Toan", "Tuan" };
 		// String[] names2 = { "Ngoc", "Ha", "Minh", "Hanh", "Tu", "Nguyen", "Duy", "Phuc", "Quan",

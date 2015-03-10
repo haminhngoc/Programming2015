@@ -1,0 +1,53 @@
+5 50 50
+387 676 -538 -622 950 300 -827 -696 -242 740 725 790 148 -300 -840 -235 -422 731 -62 -717 624 809 -608 802 927 432 114 236 -158 -98 -881 73 885 459 502 -394 -85 1 663 -753 -536 292 -791 -252 -413 -247 113 -795 -772 -810 
+push -282
+push -846
+push -274
+pop
+push 170
+push -659
+push -481
+push -157
+average
+average
+push -534
+pop
+pop
+push 67
+sum
+pop
+average
+sum
+average
+sum
+sum
+pop
+push -532
+sum
+average
+pop
+push -542
+sum
+pop
+pop
+push 895
+push 564
+push -61
+push -52
+pop
+push -435
+sum
+pop
+sum
+peek
+pop
+peek
+pop
+push -353
+push 719
+push 394
+pop
+pop
+push 982
+push 651
+

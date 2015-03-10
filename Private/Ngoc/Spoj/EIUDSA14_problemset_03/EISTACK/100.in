@@ -1,0 +1,13 @@
+10 5 10
+726 -798 40 892 557 
+push 596
+push -73
+push 215
+push 762
+pop
+push -485
+push 608
+sum
+push 348
+pop
+

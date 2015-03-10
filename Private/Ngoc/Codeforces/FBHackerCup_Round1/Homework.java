@@ -26,25 +26,33 @@ public class Homework {
 	}
 
 	static final int N = 10 * 1000 * 1000 + 1;
-	static byte[] map = new byte[N];
+	static final byte[] map = new byte[N];
+	static final int[] sum = new int[N];
+	static final int[] curSum = new int[10];
 
 	static void solve() {
 		int T = ni();
 		buildPrimes();
+		for (int i = 0; i < N; i++) {
+			int count = map[i];
+			sum[i] = ++curSum[count];
+		}
 
 		for (int i = 0; i < T; i++) {
 			int A = ni();
 			int B = ni();
 			int K = ni();
-
-			int result = 0;
-			for (int j = A; j <= B; j++) {
-				if (map[j] == K) {
-					result++;
-				}
-			}
+			int result = findK(B, K) - findK(A - 1, K);
 			System.out.println("Case #" + (i + 1) + ": " + result);
 		}
+	}
+
+	static int findK(int i, int k) {
+		for (; i >= 0; i--) {
+			if (map[i] == k)
+				return sum[i];
+		}
+		return 0;
 	}
 
 	static void buildPrimes() {
