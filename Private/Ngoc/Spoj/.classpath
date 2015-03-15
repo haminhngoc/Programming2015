@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="PTIT2015"/>
 	<classpathentry kind="src" path="EIUDSA14_Problemset_05"/>
+	<classpathentry kind="src" path="PTIT2015/Round 1"/>
+	<classpathentry kind="src" path="PTIT2015/Round 2"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
