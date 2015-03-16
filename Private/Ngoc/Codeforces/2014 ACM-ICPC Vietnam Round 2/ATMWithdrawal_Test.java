@@ -88,11 +88,12 @@ public class ATMWithdrawal_Test {
 				{ 4, 2, 2 }, { 5, 1, 1 }, { 6, 2, 2 },
 				{ 7, 2, 1 }, { 8, 2, 1 }, { 9, 3, 3 } };
 		long m = (long) Math.pow(10, c);
-		s2 = (w - 5 * m) / (5 * m);
+		long max = 5 * m;
+		s2 = (w - max) / max;
 		n2 = 1;
-		w = w - (s2 * 5 * m);
-		// while (w > 0) {
-		for (int j = 0; j <= c; j++) {
+		w -= s2 * max;
+		while (w > 0) {
+			// for (int j = 0; j <= c; j++) {
 			int x = (int) (w / m);
 			s2 += map[x][1];
 			n2 *= map[x][2];

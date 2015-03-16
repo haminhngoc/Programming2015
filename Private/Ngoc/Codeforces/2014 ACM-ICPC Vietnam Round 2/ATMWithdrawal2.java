@@ -25,20 +25,21 @@ public class ATMWithdrawal2 {
 
 	static void solve() {
 		long w = nl();
+		int c = ni();
 		if (w % 1000 != 0) {
 			System.out.println(0);
 			return;
 		}
 		w /= 1000;
-		int c = ni();
 		long[][] map = new long[][] { { 0, 0, 1 },
 				{ 1, 1, 1 }, { 2, 1, 1 }, { 3, 1, 1 },
 				{ 4, 2, 2 }, { 5, 1, 1 }, { 6, 2, 2 },
 				{ 7, 2, 1 }, { 8, 2, 1 }, { 9, 3, 3 } };
 
 		long m = (long) Math.pow(10, c);
-		long s = (w - 5 * m) / (5 * m);
-		w = w - (s * 5 * m);
+		long max = 5 * m;
+		long s = (w - max) / max;
+		w -= s * max;
 		long n = 1;
 		while (w > 0) {
 			int x = (int) (w / m);

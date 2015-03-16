@@ -1,5 +1,4 @@
-import java.math.BigInteger;
-import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,10 +15,7 @@ class P152PROC_TroChoiTrenCay {
 		is = System.in;
 		out = new PrintWriter(System.out);
 
-		int T = ni();
-		for (int t = 0; t < T; t++) {
-			solve();
-		}
+		solve();
 
 		out.flush();
 
@@ -27,8 +23,58 @@ class P152PROC_TroChoiTrenCay {
 		// System.out.println(System.currentTimeMillis() - s + "ms");
 	}
 
-	static void solve() {
+	static ArrayList<ArrayList<Integer>> allEdges = new ArrayList<ArrayList<Integer>>();
+	static boolean[] statuses;
+	static boolean[] newStatuses;
 
+	// static boolean[] flips;
+
+	static void solve() {
+		int n = ni();
+		statuses = new boolean[n];
+		newStatuses = new boolean[n];
+		// flips = new boolean[n];
+
+		for (int i = 0; i < n; i++) {
+			allEdges.add(new ArrayList<Integer>());
+		}
+
+		for (int i = 0; i < n - 1; i++) {
+			int u = ni() - 1;
+			int v = ni() - 1;
+			allEdges.get(u).add(v);
+			allEdges.get(v).add(u);
+		}
+		for (int i = 0; i < n; i++) {
+			statuses[i] = (ni() == 1);
+		}
+		for (int i = 0; i < n; i++) {
+			newStatuses[i] = (ni() == 1);
+		}
+		int count = dfs(0, -1, false, false);
+		System.out.println(count);
+		// StringBuilder bf = new StringBuilder();
+		// for (int i = 0; i < n; i++) {
+		// if (flips[i]) {
+		// bf.append((i + 1) + " ");
+		// }
+		// }
+		// System.out.println(bf.toString());
+	}
+
+	static int dfs(int node, int parentNode, boolean flipParent, boolean flipGrand) {
+		int count = 0;
+		if ((statuses[node] ^ newStatuses[node]) != flipGrand) {
+			// flips[node] = true;
+			flipGrand = !flipGrand;
+			count++;
+		}
+		for (int i : allEdges.get(node)) {
+			if (i != parentNode) {
+				count += dfs(i, node, flipGrand, flipParent);
+			}
+		}
+		return count;
 	}
 
 	/*****************************************************************

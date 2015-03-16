@@ -25,14 +25,12 @@ public class ATMWithdrawal {
 
 	static void solve() {
 		long w = nl();
+		int c = ni();
 		if (w % 1000 != 0) {
 			System.out.println(0);
 			return;
 		}
-
 		w /= 1000;
-		int c = ni();
-
 		long[][] map = new long[][] { { 0, 0, 1 },
 				{ 1, 1, 1 }, { 2, 1, 1 }, { 3, 1, 1 },
 				{ 4, 2, 2 }, { 5, 1, 1 }, { 6, 2, 2 },

@@ -4,17 +4,17 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class MathMagic {
+public class MathMagic2 {
 	static InputStream is;
 	static PrintWriter out;
-	static String INPUT = "2 2";
+	static String INPUT = "";
 
 	public static void main(String[] args) throws Exception {
 		oj = true;
 		is = oj ? System.in : new ByteArrayInputStream(INPUT.getBytes());
 		out = new PrintWriter(System.out);
 
-		initStatus();
+		initValidRange();
 
 		long s = System.currentTimeMillis();
 		int T = ni();
@@ -25,113 +25,104 @@ public class MathMagic {
 		tr(System.currentTimeMillis() - s + "ms");
 	}
 
-	static int R = 1;
-	static int G = 8;
-	static int B = 64;
-	static int Y = 512;
+	static final int R = 1;
+	static final int G = 8;
+	static final int B = 64;
+	static final int Y = 512;
 
-	static int mapColor(char c) {
-		if (c == 'R')
-			return 1;
-		if (c == 'G')
-			return 8;
-		if (c == 'B')
-			return 64;
-		if (c == 'Y')
-			return 512;
+	static int getColorValue(char c) {
+		switch (c) {
+		case 'R':
+			return R;
+		case 'G':
+			return G;
+		case 'B':
+			return B;
+		case 'Y':
+			return Y;
+		}
 		return -1;
 	}
 
-	static void copyValids(long[] s, long[] t, long minus) {
-		for (int i : valids) {
-			t[i] = s[i];
-			if (t[i] != MIN) {
-				t[i] -= minus;
-			}
+	static int getScore(int color, int s, int x) {
+		switch (color) {
+		case R:
+			return s * x;
+		case G:
+			return s + x;
+		case B:
+			return s - x;
+		case Y:
+			return (x > 0) ? (s / x) : 0;
 		}
+		return -1;
 	}
 
-	static int getS(String box) {
-		return (int) box.charAt(1) + (int) box.charAt(3) + (int) box.charAt(5) + (int) box.charAt(7) - 4 * '0';
-	}
-
-	static int getX(String box, int i) {
-		return box.charAt(i) - '0';
-	}
-
-	static int getStatus(String box) {
-		int status = 0;
-		for (int i = 0; i < 8; i += 2) {
-			status += mapColor(box.charAt(i));
-		}
-		return status;
-	}
-
-	static void initStatus() {
-		int[] vds = new int[MABSTATUS];
-		int index = 0;
-		for (int i = 0; i < MABSTATUS; i++) {
+	static void initValidRange() {
+		int[] vds = new int[100];
+		int valid = 0;
+		for (int i = 0; i < VALIDRANGE; i++) {
 			int total = (i & 7) + ((i >> 3) & 7) + ((i >> 6) & 7) + ((i >> 9) & 7);
 			if (total == 4) {
-				vds[index++] = i;
+				vds[valid++] = i;
 			}
 		}
-		valids = Arrays.copyOfRange(vds, 0, index);
+		valids = Arrays.copyOfRange(vds, 0, valid);
 	}
 
-	static final int MABSTATUS = 2048 + 5;
-	static final long MIN = Long.MIN_VALUE;
-	static long[] statuses = new long[MABSTATUS];
-	static long[] newStatuses = new long[MABSTATUS];
+	static final int VALIDRANGE = 2048 + 5;
+	static final int MININT = Integer.MIN_VALUE;
+	static int[] statuses = new int[VALIDRANGE];
+	static int[] newStatuses = new int[VALIDRANGE];
 	static int[] valids;
 
 	static void solve() {
 		int n = ni();
-		Arrays.fill(statuses, MIN);
-		Arrays.fill(newStatuses, MIN);
+		Arrays.fill(statuses, MININT);
+		Arrays.fill(newStatuses, MININT);
 		String box = ns();
-		statuses[getStatus(box)] = 0;
+		int status = getColorValue(box.charAt(0)) + getColorValue(box.charAt(2))
+				+ getColorValue(box.charAt(4)) + getColorValue(box.charAt(6));
+		statuses[status] = 0;
 
 		for (int i = 0; i < n - 1; i++) {
 			box = ns();
-			int s = getS(box);
-			copyValids(statuses, newStatuses, s);
+			int[] cs = new int[] { getColorValue(box.charAt(0)), getColorValue(box.charAt(2)),
+					getColorValue(box.charAt(4)), getColorValue(box.charAt(6)) };
+			int[] vs = new int[] { box.charAt(1) - '0', box.charAt(3) - '0',
+					box.charAt(5) - '0', box.charAt(7) - '0' };
 
-			for (int j = 0; j < 8; j += 2) {
-				int color = mapColor(box.charAt(j));
-				int opColor = mapColor(box.charAt((j + 4) % 8));
-				int x = getX(box, j + 1);
+			int s = vs[0] + vs[1] + vs[2] + vs[3];
 
-				int score = 0;
-				if (color == R) {
-					score = s * x;
-				}
-				else if (color == G) {
-					score = s + x;
-				}
-				else if (color == B) {
-					score = s - x;
-				}
-				else {
-					score = (x != 0) ? s / x : 0;
-				}
-
-				for (int k : valids) {
-					int mask = color | (color << 1) | (color << 2);
-					if ((k & mask) != 0 && statuses[k] != MIN) {
-						int newStatus = k - color + opColor;
-						newStatuses[newStatus] = Math.max(newStatuses[newStatus],
-								statuses[k] + score);
-					}
+			for (int k : valids) {
+				if (statuses[k] != MININT) {
+					newStatuses[k] = statuses[k] - s;
 				}
 			}
 
-			long[] temp = statuses;
+			for (int k : valids) {
+				if (statuses[k] == MININT) {
+					continue;
+				}
+
+				for (int j = 0; j < 4; j++) {
+					int c = cs[j];
+					int cp = cs[(j + 2) % 4];
+					int v = vs[j];
+					if ((k & (c | (c << 1) | (c << 2))) != 0) {
+						int newStatus = k - c + cp;
+						newStatuses[newStatus] =
+								Math.max(newStatuses[newStatus],
+										statuses[k] + getScore(c, s, v));
+					}
+				}
+			}
+			int[] temp = statuses;
 			statuses = newStatuses;
 			newStatuses = temp;
 		}
 
-		long max = Long.MIN_VALUE;
+		int max = Integer.MIN_VALUE;
 		for (int i : valids) {
 			max = Math.max(max, statuses[i]);
 		}
