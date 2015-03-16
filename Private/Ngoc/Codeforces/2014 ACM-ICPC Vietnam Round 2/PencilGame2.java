@@ -4,19 +4,20 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class MathMagic2 {
+public class PencilGame2 {
 	static InputStream is;
 	static PrintWriter out;
-	static String INPUT = "";
+	static String INPUT = "2 2";
 
 	public static void main(String[] args) throws Exception {
 		oj = true;
 		is = oj ? System.in : new ByteArrayInputStream(INPUT.getBytes());
 		out = new PrintWriter(System.out);
 
-		initValidRange();
-
 		long s = System.currentTimeMillis();
+
+		buildPrimes();
+		// test();
 		int T = ni();
 		for (int t = 0; t < T; t++) {
 			solve();
@@ -25,108 +26,93 @@ public class MathMagic2 {
 		tr(System.currentTimeMillis() - s + "ms");
 	}
 
-	static final int R = 1;
-	static final int G = 8;
-	static final int B = 64;
-	static final int Y = 512;
-
-	static int getColorValue(char c) {
-		switch (c) {
-		case 'R':
-			return R;
-		case 'G':
-			return G;
-		case 'B':
-			return B;
-		case 'Y':
-			return Y;
-		}
-		return -1;
-	}
-
-	static int getScore(int color, int s, int x) {
-		switch (color) {
-		case R:
-			return s * x;
-		case G:
-			return s + x;
-		case B:
-			return s - x;
-		case Y:
-			return (x > 0) ? (s / x) : 0;
-		}
-		return -1;
-	}
-
-	static void initValidRange() {
-		int[] vds = new int[100];
-		int valid = 0;
-		for (int i = 0; i < VALIDRANGE; i++) {
-			int total = (i & 7) + ((i >> 3) & 7) + ((i >> 6) & 7) + ((i >> 9) & 7);
-			if (total == 4) {
-				vds[valid++] = i;
-			}
-		}
-		valids = Arrays.copyOfRange(vds, 0, valid);
-	}
-
-	static final int VALIDRANGE = 2048 + 5;
-	static final int MININT = Integer.MIN_VALUE;
-	static int[] statuses = new int[VALIDRANGE];
-	static int[] newStatuses = new int[VALIDRANGE];
-	static int[] valids;
-
+	/**
+	 * @Des Assume rectangle is (r, c, h, w)
+	 * @=> L = sum(rec(i,j)) = h*w*(r*n + c) + h*w*(w-1)/2 + h*w*(h-1)*n/2
+	 * @=> 2L/w/h - (w-1) - (h-1)*n = 2r*n + 2c
+	 */
 	static void solve() {
-		int n = ni();
-		Arrays.fill(statuses, MININT);
-		Arrays.fill(newStatuses, MININT);
-		String box = ns();
-		int status = getColorValue(box.charAt(0)) + getColorValue(box.charAt(2))
-				+ getColorValue(box.charAt(4)) + getColorValue(box.charAt(6));
-		statuses[status] = 0;
-
-		for (int i = 0; i < n - 1; i++) {
-			box = ns();
-			int[] cs = new int[] { getColorValue(box.charAt(0)), getColorValue(box.charAt(2)),
-					getColorValue(box.charAt(4)), getColorValue(box.charAt(6)) };
-			int[] vs = new int[] { box.charAt(1) - '0', box.charAt(3) - '0',
-					box.charAt(5) - '0', box.charAt(7) - '0' };
-
-			int s = vs[0] + vs[1] + vs[2] + vs[3];
-
-			for (int k : valids) {
-				if (statuses[k] != MININT) {
-					newStatuses[k] = statuses[k] - s;
-				}
-			}
-
-			for (int k : valids) {
-				if (statuses[k] == MININT) {
-					continue;
-				}
-
-				for (int j = 0; j < 4; j++) {
-					int c = cs[j];
-					int cp = cs[(j + 2) & 4];
-					int v = vs[j];
-					if ((k & (c | (c << 1) | (c << 2))) != 0) {
-						int newStatus = k - c + cp;
-						newStatuses[newStatus] =
-								Math.max(newStatuses[newStatus],
-										statuses[k] + getScore(c, s, v));
+		long m = ni();
+		long n = ni();
+		long l = nl();
+		if (l < m * n) {
+			System.out.println(1);
+			return;
+		}
+		long min = Long.MAX_VALUE;
+		l <<= 1;
+		parseDivisors(l, Math.max(n, m) + 1);
+		long[] sortedDivs = Arrays.copyOfRange(divisors, 0, nDiv);
+		Arrays.sort(sortedDivs);
+		for (int i = 0; i < nDiv; i++) {
+			long w = sortedDivs[i];
+			for (int j = 0; j < nDiv; j++) {
+				long h = sortedDivs[j];
+				long area = h * w;
+				if (area >= min) break;
+				if (l % area == 0) {
+					long f = l / area - (w - 1) - (h - 1) * n;
+					if ((f & 1) == 0 && f >= 0) {
+						f >>= 1;
+						long r = f / n;
+						long c = f % n;
+						if (r + h <= m && c + w <= n) {
+							min = area;
+						}
 					}
 				}
 			}
-			int[] temp = statuses;
-			statuses = newStatuses;
-			newStatuses = temp;
 		}
+		System.out.println(min == Long.MAX_VALUE ? -1 : min);
+	}
 
-		int max = Integer.MIN_VALUE;
-		for (int i : valids) {
-			max = Math.max(max, statuses[i]);
+	static final int MAX = 8200;
+	static long[] divisors = new long[MAX + 1];
+	static int nDiv = 0;
+
+	static final int MAXPRIME = 1000000 + 7;
+	static boolean[] primes = new boolean[MAXPRIME + 1];
+
+	static void buildPrimes() {
+		Arrays.fill(primes, true);
+		int sqmax = (int) (Math.sqrt(MAXPRIME)) + 1;
+		for (int i = 2; i < sqmax; i++) {
+			if (primes[i]) {
+				for (int j = i * i; j < MAXPRIME; j += i) {
+					primes[j] = false;
+				}
+			}
 		}
-		System.out.println(max);
+	}
+
+	static void parseDivisors(long x, long limit) {
+		divisors[0] = 1;
+		nDiv = 1;
+		for (int i = 2; i < limit; i++) {
+			if (primes[i]) {
+				int start = nDiv;
+				int powi = 1;
+				while (x % i == 0) {
+					powi *= i;
+					for (int j = 0; j < start; j++) {
+						long div = divisors[j] * powi;
+						if (div <= limit) {
+							divisors[nDiv++] = div;
+						}
+					}
+					x /= i;
+				}
+			}
+		}
+		if (x > 1) {
+			int start = nDiv;
+			for (int j = 0; j < start; j++) {
+				long div = divisors[j] * x;
+				if (div <= limit) {
+					divisors[nDiv++] = div;
+				}
+			}
+		}
 	}
 
 	/*****************************************************************
