@@ -27,13 +27,10 @@ class P152PROC_TroChoiTrenCay {
 	static boolean[] statuses;
 	static boolean[] newStatuses;
 
-	// static boolean[] flips;
-
 	static void solve() {
 		int n = ni();
 		statuses = new boolean[n];
 		newStatuses = new boolean[n];
-		// flips = new boolean[n];
 
 		for (int i = 0; i < n; i++) {
 			allEdges.add(new ArrayList<Integer>());
@@ -53,13 +50,6 @@ class P152PROC_TroChoiTrenCay {
 		}
 		int count = dfs(0, -1, false, false);
 		System.out.println(count);
-		// StringBuilder bf = new StringBuilder();
-		// for (int i = 0; i < n; i++) {
-		// if (flips[i]) {
-		// bf.append((i + 1) + " ");
-		// }
-		// }
-		// System.out.println(bf.toString());
 	}
 
 	static int dfs(int node, int parentNode, boolean flipParent, boolean flipGrand) {
