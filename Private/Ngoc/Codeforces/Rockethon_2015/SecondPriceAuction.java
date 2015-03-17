@@ -10,7 +10,7 @@ public class SecondPriceAuction {
 	static String INPUT = "3 4 7 8 10 5 5";
 
 	public static void main(String[] args) throws Exception {
-		oj = false;
+		oj = true;
 		is = oj ? System.in : new ByteArrayInputStream(INPUT.getBytes());
 		out = new PrintWriter(System.out);
 
@@ -20,57 +20,65 @@ public class SecondPriceAuction {
 		tr(System.currentTimeMillis() - s + "ms");
 	}
 
+	static int MAX = 10000;
+	static int n;
+	static double[] lefts;
+	static double[] rights;
+
 	/**
-	 * @Solution:
+	 * @Solution: probability of x to be second price: one company choose value greater than x while (n-1) company choose value less than x in which at least one choose x
+	 * @Solution: Sum of x multiply: f(si > x) *(f(S/{si} <= x) - f(S/{si} <= x-1)) + f(S<=x and at least two value = x)
 	 */
 	static void solve() {
-		int n = ni();
-		int MAX = 10000;
-		final int F = 0; // First
-		final int S = 1; // Second
-		double[][] probs = new double[MAX + 1][2];
-		double[][] newProbs = new double[MAX + 1][2];
-		{
-			int left = ni();
-			int right = ni();
-			float total = right - left + 1;
-			for (int j = left; j <= MAX; j++) {
-				if (j < right) {
-					probs[j][F] = probs[j - 1][F] + 1.0 / total;
-				} else {
-					probs[j][F] = 1;
-				}
-			}
-		}
-		for (int i = 1; i < n; i++) {
-			int left = ni();
-			int right = ni();
-			double total = right - left + 1;
-			for (int j = 1; j <= MAX; j++) {
-				double probj = (left <= j && j <= right) ? 1 / total : 0;
-				double accj = j < left ? 0 : (j <= right ? (j - left + 1) / total : 1);
-				newProbs[j][F] = newProbs[j - 1][F]
-						+ probs[j - 1][F] * probj
-						+ (probs[j][F] - probs[j - 1][F]) * accj;
+		n = ni();
+		lefts = new double[n];
+		rights = new double[n];
 
-				double greaterFirst = right >= j ? (right - j) / total : 0;
-				accj = j < left ? 0 : (j <= right ? (j - left) / total : 1);
-				newProbs[j][S] = newProbs[j - 1][S]
-						+ (probs[j][F] - probs[j - 1][F]) * greaterFirst
-						+ (probs[j][S] - probs[j - 1][S]) * accj
-						+ probs[j - 1][S] * probj;
-
-			}
-			double[][] temps = probs;
-			probs = newProbs;
-			newProbs = temps;
+		for (int i = 0; i < n; i++) {
+			lefts[i] = ni();
+			rights[i] = ni();
 		}
 
 		double result = 0;
-		for (int j = 1; j <= MAX; j++) {
-			result += (probs[j][S] - probs[j - 1][S]) * j;
+		for (int x = 1; x <= MAX; x++) {
+			for (int i = 0; i < n; i++) {
+				result += x * (1 - probToX(x, i))
+						* (probXExclude(x, i) - probXExclude(x - 1, i));
+			}
+			result += x * prob2isX(x);
 		}
 		System.out.println(result);
+	}
+
+	/*
+	 * f(At least two value is x while none of them greater than x)
+	 */
+	static double prob2isX(int x) {
+		double result = probXExclude(x, -1) - probXExclude(x - 1, -1);
+		for (int i = 0; i < n; i++) {
+			result -= ((x < lefts[i] || x > rights[i]) ? 0 : 1) / (rights[i] - lefts[i] + 1) * probXExclude(x - 1, i);
+		}
+		return result;
+	}
+
+	/**
+	 * f(S/si <= x)
+	 */
+	static double probXExclude(int x, int u) {
+		double result = 1;
+		for (int k = 0; k < n; k++) {
+			if (k != u) {
+				result *= probToX(x, k);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * f(si <= x)
+	 */
+	static double probToX(int x, int i) {
+		return (Math.min(rights[i], Math.max(lefts[i] - 1, x)) - lefts[i] + 1) / (rights[i] - lefts[i] + 1);
 	}
 
 	/*****************************************************************
