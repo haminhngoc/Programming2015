@@ -31,7 +31,7 @@ public class GEN {
 		// gen_EIUFREQU(8, names3, 10000);
 		// gen_EIUFREQU(9, names3, 100000);
 		// gen_EIUFREQU(10, names3, 100000);
-
+     
 	}
 
 	public static String randString(int minLen, int maxLen) {

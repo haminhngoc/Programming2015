@@ -5,7 +5,11 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-class P152PROC_TroChoiTrenCay {
+/**
+ * @SPOJ allow invoke method recursively deep up to 6K (http://www.spoj.com/PTIT/problems/P152PROC/)
+ * @Codeforce: up to 1M (http://codeforces.com/contest/430/problem/C)
+ */
+public class P152PROC_TroChoiTrenCay {
 	static InputStream is;
 	static PrintWriter out;
 
@@ -26,11 +30,13 @@ class P152PROC_TroChoiTrenCay {
 	static ArrayList<ArrayList<Integer>> allEdges = new ArrayList<ArrayList<Integer>>();
 	static boolean[] statuses;
 	static boolean[] newStatuses;
+	static boolean[] flips;
 
 	static void solve() {
 		int n = ni();
 		statuses = new boolean[n];
 		newStatuses = new boolean[n];
+		flips = new boolean[n];
 
 		for (int i = 0; i < n; i++) {
 			allEdges.add(new ArrayList<Integer>());
@@ -50,12 +56,19 @@ class P152PROC_TroChoiTrenCay {
 		}
 		int count = dfs(0, -1, false, false);
 		System.out.println(count);
+		StringBuilder bf = new StringBuilder();
+		for (int i = 0; i < n; i++) {
+			if (flips[i]) {
+				bf.append((i + 1) + " ");
+			}
+		}
+		System.out.println(bf.toString());
 	}
 
 	static int dfs(int node, int parentNode, boolean flipParent, boolean flipGrand) {
 		int count = 0;
 		if ((statuses[node] ^ newStatuses[node]) != flipGrand) {
-			// flips[node] = true;
+			flips[node] = true;
 			flipGrand = !flipGrand;
 			count++;
 		}
