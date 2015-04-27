@@ -4,44 +4,26 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-class P151PROB {
+class PTIT015G {
 	static InputStream is;
 	static PrintWriter out;
 
 	public static void main(String[] args) {
-
-		long s = System.currentTimeMillis();
 		is = System.in;
 		out = new PrintWriter(System.out);
-
-		solve();
-
+		int m = ni();
+		int n = ni();
+		while (n != 0 || m != 0) {
+			solve(m, n);
+			m = ni();
+			n = ni();
+		}
 		out.flush();
-
-		// System.out.println();
-		// System.out.println(System.currentTimeMillis() - s + "ms");
 	}
 
 	/**
-	 * @Description: Minimize(sum{Si.c}) When sum{Si.t} >= n-|{Si}|
 	 */
-	static void solve() {
-		int n = ni();
-		long[] costs = new long[n + 1];
-		Arrays.fill(costs, Long.MAX_VALUE);
-		costs[0] = 0;
-		for (int i = 0; i < n; i++) {
-			int t = ni();
-			int c = ni();
-			for (int j = n; j >= 0; j--) {
-				long val = costs[j];
-				if (val != Long.MAX_VALUE) {
-					int k = Math.min(j + t + 1, n);
-					costs[k] = Math.min(costs[k], val + c);
-				}
-			}
-		}
-		out.println(costs[n]);
+	static void solve(int m, int n) {
 	}
 
 	/*****************************************************************

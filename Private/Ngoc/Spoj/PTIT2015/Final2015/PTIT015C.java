@@ -4,44 +4,61 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-class P151PROB {
+class PTIT015C {
 	static InputStream is;
 	static PrintWriter out;
 
 	public static void main(String[] args) {
-
-		long s = System.currentTimeMillis();
 		is = System.in;
 		out = new PrintWriter(System.out);
-
-		solve();
-
+		int T = ni();
+		for (int t = 0; t < T; t++) {
+			out.println(solve() ? "YES" : "NO");
+		}
 		out.flush();
-
-		// System.out.println();
-		// System.out.println(System.currentTimeMillis() - s + "ms");
 	}
 
 	/**
-	 * @Description: Minimize(sum{Si.c}) When sum{Si.t} >= n-|{Si}|
+	 * @Simple solution, complexity: O(n^2lgn)
+	 * @Improve 1: instead of re-sort array, we can merge the first part (are minus 1) and the second part (they are
+	 *          already sorted) => Complexity O(n^2)
+	 * @Improve 2:
+	 * @+ C={cn>=...>=c2>=c1} ==transform=> {(ni,pi): |{ci=i}| & pi=nearest(n(pi)>0)} => merge & split (ni, pi) has
+	 *    complexity O(0) => Total Complexity O(sum(ci))
+	 * @Improve 3: I guess there is a O(nlgn) or O(nlgnlgn) solution
+	 * @+ Hints: Mỗi lần lặp, ta xác dịnh được vị trí cuối cùng si bị trừ 1. Thay vì trừ ta xem tất cả phần tử (i->si)
+	 *    vay 1 => thực hiện merge and split (ni,pi) trong O(0) => tìm vị trí si mới O(sum(c(i+1)-ci)). Tính toán số
+	 *    lượng đã vay sử dụng SegmentTree O(nlgn)
+	 * @Problem tricks:
+	 * @+ For every valid graph of matches: we can always assign Home-Away for all matches so that for every team
+	 *    |Home-Away| <= 1. Prove: For every cyclic path, assign H-WH-WH-...W then remove these edges. Finally we have
+	 *    some trees => easy
+	 * @+ The core problem is: for any two teams, there at most one match between them! => Greedy algorithm!
 	 */
-	static void solve() {
+	static boolean solve() {
 		int n = ni();
-		long[] costs = new long[n + 1];
-		Arrays.fill(costs, Long.MAX_VALUE);
-		costs[0] = 0;
+		int[] c = new int[n];
 		for (int i = 0; i < n; i++) {
-			int t = ni();
-			int c = ni();
-			for (int j = n; j >= 0; j--) {
-				long val = costs[j];
-				if (val != Long.MAX_VALUE) {
-					int k = Math.min(j + t + 1, n);
-					costs[k] = Math.min(costs[k], val + c);
+			c[i] = ni();
+		}
+
+		Arrays.sort(c);
+		for (int i = n - 1; i >= 0; i--) {
+			if (c[i] > i) {
+				return false;
+			}
+			int last = i - c[i];
+			for (int j = i - 1; j >= last; j--) {
+				if (c[j] > 0) {
+					c[j]--;
+				} else {
+					return false;
 				}
 			}
+			Arrays.sort(c, 0, i);
 		}
-		out.println(costs[n]);
+
+		return true;
 	}
 
 	/*****************************************************************
