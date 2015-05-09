@@ -4,26 +4,80 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-class PTIT015G {
+class MTAMSAO1M_Improve {
 	static InputStream is;
 	static PrintWriter out;
 
 	public static void main(String[] args) {
 		is = System.in;
 		out = new PrintWriter(System.out);
-		int m = ni();
-		int n = ni();
-		while (n != 0 || m != 0) {
-			solve(m, n);
-			m = ni();
-			n = ni();
-		}
+		solve();
 		out.flush();
 	}
 
-	/**
-	 */
-	static void solve(int m, int n) {
+	static int MAXVALUE;
+	static int n;
+	static int[] bit;
+	static int[] persons;
+	static boolean[] sexes;
+
+	static void set(int i, int x) {
+		while (i <= MAXVALUE) {
+			bit[i] += x;
+			i += (i & -i);
+		}
+	}
+
+	static int get(int i) {
+		int sum = 0;
+		while (i > 0) {
+			sum += bit[i];
+			i -= (i & -i);
+		}
+		return sum;
+	}
+
+	static long compute(boolean sex) {
+		int g1 = -1, g2 = -1;
+		long result = 0;
+		for (int i = 0; i < n; i++) {
+			if (sexes[i] != sex) {
+				int temp = g1;
+				g1 = g2;
+				g2 = i;
+				for (temp++; temp < g1; temp++) {
+					set(persons[temp], 1);
+				}
+			} else {
+				result += get(persons[i]); // Still be OK because gs_items are distinct
+				// result += get(persons[i] - 1); OK
+			}
+		}
+		return result;
+	}
+
+	static void solve() {
+		n = ni();
+		MAXVALUE = n + 1;
+		persons = new int[n];
+		sexes = new boolean[n];
+		bit = new int[MAXVALUE + 1];
+
+		for (int i = 0; i < n; i++) {
+			int sq = ni();
+			if (sq > 0) {
+				persons[i] = MAXVALUE - sq;
+				sexes[i] = true;
+			} else {
+				persons[i] = MAXVALUE + sq;
+			}
+		}
+
+		long resBoy = compute(true);
+		Arrays.fill(bit, 0);
+		long resGirl = compute(false);
+
+		System.out.println(resBoy + " " + resGirl);
 	}
 
 	/*****************************************************************
@@ -33,8 +87,7 @@ class PTIT015G {
 	static int lenbuf = 0, ptrbuf = 0;
 
 	static int readByte() {
-		if (lenbuf == -1)
-			throw new InputMismatchException();
+		if (lenbuf == -1) throw new InputMismatchException();
 		if (ptrbuf >= lenbuf) {
 			ptrbuf = 0;
 			try {
@@ -42,8 +95,7 @@ class PTIT015G {
 			} catch (IOException e) {
 				throw new InputMismatchException();
 			}
-			if (lenbuf <= 0)
-				return -1;
+			if (lenbuf <= 0) return -1;
 		}
 		return inbuf[ptrbuf++];
 	}
@@ -54,8 +106,7 @@ class PTIT015G {
 
 	static int skip() {
 		int b;
-		while ((b = readByte()) != -1 && isSpaceChar(b))
-			;
+		while ((b = readByte()) != -1 && isSpaceChar(b));
 		return b;
 	}
 
@@ -104,8 +155,7 @@ class PTIT015G {
 	static int ni() {
 		int num = 0, b;
 		boolean minus = false;
-		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'))
-			;
+		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'));
 		if (b == '-') {
 			minus = true;
 			b = readByte();
@@ -125,8 +175,7 @@ class PTIT015G {
 		long num = 0;
 		int b;
 		boolean minus = false;
-		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'))
-			;
+		while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'));
 		if (b == '-') {
 			minus = true;
 			b = readByte();

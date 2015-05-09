@@ -1,12 +1,28 @@
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 
 public class GEN {
 
 	public static void main(String[] args) throws Exception {
-		 gen_EIUAPPEA(9, 100000, 1000000, 1000000 + 100000);
-		 gen_EIUAPPEA(10, 100000, 1000000, 1000000 + 100000);
-		 gen_EIUAPPEA(11, 6, 1, 4);
+
+		// gen_MTAMSAO(0, 1000000, 99999999);
+		//gen_MTAMSAO(1, 1000000, 1000000);
+		gen_MTAMSAO(10, 10, 10);
+		gen_MTAMSAO(11, 10, 10);
+		gen_MTAMSAO(12, 10, 10);
+		gen_MTAMSAO(13, 10, 10);
+		gen_MTAMSAO(14, 20, 20);
+		gen_MTAMSAO(15, 20, 20);
+		gen_MTAMSAO(16, 20, 20);
+		gen_MTAMSAO(17, 50, 50);
+		gen_MTAMSAO(18, 50, 50);
+		gen_MTAMSAO(19, 100, 100);
+		gen_MTAMSAO(20, 100, 100);
+
+		// gen_EIUAPPEA(9, 100000, 1000000, 1000000 + 100000);
+		// gen_EIUAPPEA(10, 100000, 1000000, 1000000 + 100000);
+		// gen_EIUAPPEA(11, 6, 1, 4);
 
 		// String[] names1 = { "Hung", "Tien", "Toan", "Tuan" };
 		// String[] names2 = { "Ngoc", "Ha", "Minh", "Hanh", "Tu", "Nguyen", "Duy", "Phuc", "Quan",
@@ -31,7 +47,7 @@ public class GEN {
 		// gen_EIUFREQU(8, names3, 10000);
 		// gen_EIUFREQU(9, names3, 100000);
 		// gen_EIUFREQU(10, names3, 100000);
-     
+
 	}
 
 	public static String randString(int minLen, int maxLen) {
@@ -78,8 +94,8 @@ public class GEN {
 	}
 
 	public static void gen_EIUAPPEA(int id, int n, int minRange, int maxRange) throws Exception {
-		String basePath = "D:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\MidTerm\\EIUAPPEA\\";
-		String classPath = "D:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\bin";
+		String basePath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\MidTerm\\EIUAPPEA\\";
+		String classPath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\bin";
 		String javaClass = "EIUAPPEA";
 
 		String inFilename = basePath + id + ".in";
@@ -101,4 +117,29 @@ public class GEN {
 		System.out.println(command);
 	}
 
+	public static void gen_MTAMSAO(int id, int n, int range) throws IOException {
+		String basePath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\bin\\";
+		String classPath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\bin";
+		String javaClass = "MTAMSAO1M";
+		
+		String inFilename = basePath + id + ".in";
+		String outFilename = basePath + id + ".out";
+		FileWriter in = new FileWriter(inFilename);
+
+		StringBuffer inBuffer = new StringBuffer();
+		inBuffer.append(n + "\r\n");
+		for (int i = 0; i < n; i++) {
+			int value = randBetween(-range, range);
+			if(value == 0) value = randBetween(-range, range);
+			if(value == 0) value = randBetween(-range, range);
+			if(value == 0) value = 1;
+			inBuffer.append(value + " ");
+		}
+
+		in.write(inBuffer.toString() + "\r\n");
+		in.close();
+		
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
+		System.out.println(command);
+	}
 }
