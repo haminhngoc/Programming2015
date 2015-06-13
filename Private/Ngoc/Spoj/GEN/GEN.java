@@ -6,19 +6,30 @@ public class GEN {
 
 	public static void main(String[] args) throws Exception {
 
+		// gen_EIUPREIU(0, 2);
+		// gen_EIUPREIU(1, 4);
+		// gen_EIUPREIU(2, 6);
+
+		// for (int i = 3; i < 10; i++) {
+		// gen_EIUPREIU(i, 2 * randBetween(1, 500));
+		// }
+
+		gen_EIUPREIU(10, 1000);
+		gen_EIUPREIU(11, 1000);
+
 		// gen_MTAMSAO(0, 1000000, 99999999);
-		//gen_MTAMSAO(1, 1000000, 1000000);
-		gen_MTAMSAO(10, 10, 10);
-		gen_MTAMSAO(11, 10, 10);
-		gen_MTAMSAO(12, 10, 10);
-		gen_MTAMSAO(13, 10, 10);
-		gen_MTAMSAO(14, 20, 20);
-		gen_MTAMSAO(15, 20, 20);
-		gen_MTAMSAO(16, 20, 20);
-		gen_MTAMSAO(17, 50, 50);
-		gen_MTAMSAO(18, 50, 50);
-		gen_MTAMSAO(19, 100, 100);
-		gen_MTAMSAO(20, 100, 100);
+		// gen_MTAMSAO(1, 1000000, 1000000);
+		// gen_MTAMSAO(10, 10, 10);
+		// gen_MTAMSAO(11, 10, 10);
+		// gen_MTAMSAO(12, 10, 10);
+		// gen_MTAMSAO(13, 10, 10);
+		// gen_MTAMSAO(14, 20, 20);
+		// gen_MTAMSAO(15, 20, 20);
+		// gen_MTAMSAO(16, 20, 20);
+		// gen_MTAMSAO(17, 50, 50);
+		// gen_MTAMSAO(18, 50, 50);
+		// gen_MTAMSAO(19, 100, 100);
+		// gen_MTAMSAO(20, 100, 100);
 
 		// gen_EIUAPPEA(9, 100000, 1000000, 1000000 + 100000);
 		// gen_EIUAPPEA(10, 100000, 1000000, 1000000 + 100000);
@@ -121,7 +132,7 @@ public class GEN {
 		String basePath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\bin\\";
 		String classPath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\bin";
 		String javaClass = "MTAMSAO1M";
-		
+
 		String inFilename = basePath + id + ".in";
 		String outFilename = basePath + id + ".out";
 		FileWriter in = new FileWriter(inFilename);
@@ -130,15 +141,34 @@ public class GEN {
 		inBuffer.append(n + "\r\n");
 		for (int i = 0; i < n; i++) {
 			int value = randBetween(-range, range);
-			if(value == 0) value = randBetween(-range, range);
-			if(value == 0) value = randBetween(-range, range);
-			if(value == 0) value = 1;
+			if (value == 0) value = randBetween(-range, range);
+			if (value == 0) value = randBetween(-range, range);
+			if (value == 0) value = 1;
 			inBuffer.append(value + " ");
 		}
 
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
-		
+
+		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
+		System.out.println(command);
+	}
+
+	public static void gen_EIUPREIU(int id, int n) throws IOException {
+		String basePath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\bin\\";
+		String classPath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\bin";
+		String javaClass = "EIUPREIU";
+
+		String inFilename = basePath + id + ".in";
+		String outFilename = basePath + id + ".out";
+		FileWriter in = new FileWriter(inFilename);
+
+		StringBuffer inBuffer = new StringBuffer();
+		inBuffer.append(n + "\r\n");
+
+		in.write(inBuffer.toString() + "\r\n");
+		in.close();
+
 		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
 		System.out.println(command);
 	}

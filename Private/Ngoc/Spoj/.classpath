@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="GEN"/>
 	<classpathentry kind="src" path="Exam"/>
 	<classpathentry kind="src" path="PTIT2015/Randoms"/>
+	<classpathentry kind="src" path="EIUADA15_PS4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
