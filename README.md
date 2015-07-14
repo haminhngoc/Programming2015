@@ -24,14 +24,5 @@ Trần Công Duy
 + http://vn.spoj.com/users/duytran
 
 Nguyễn Hồng Khánh
-+ ?
-+ 
-
-Nguyễn Hùng Sơn
-+ ?
-+ 
-
-Nguyễn Trường Khang
-+ ?
 + 
 
