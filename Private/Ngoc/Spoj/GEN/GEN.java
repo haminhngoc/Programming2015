@@ -14,8 +14,8 @@ public class GEN {
 		// gen_EIUPREIU(i, 2 * randBetween(1, 500));
 		// }
 
-		gen_EIUPREIU(10, 1000);
-		gen_EIUPREIU(11, 1000);
+		// gen_EIUPREIU(10, 1000);
+		// gen_EIUPREIU(11, 1000);
 
 		// gen_MTAMSAO(0, 1000000, 99999999);
 		// gen_MTAMSAO(1, 1000000, 1000000);
@@ -36,8 +36,10 @@ public class GEN {
 		// gen_EIUAPPEA(11, 6, 1, 4);
 
 		// String[] names1 = { "Hung", "Tien", "Toan", "Tuan" };
-		// String[] names2 = { "Ngoc", "Ha", "Minh", "Hanh", "Tu", "Nguyen", "Duy", "Phuc", "Quan",
-		// "Son", "Toan", "Phi", "Khanh", "Hung", "Hau", "Tien", "Toan", "Thinh",
+		// String[] names2 = { "Ngoc", "Ha", "Minh", "Hanh", "Tu", "Nguyen",
+		// "Duy", "Phuc", "Quan",
+		// "Son", "Toan", "Phi", "Khanh", "Hung", "Hau", "Tien", "Toan",
+		// "Thinh",
 		// "Tuan" };
 		// String[] names3 = new String[1000];
 		// for (int i = 0; i < names3.length; i++) {
@@ -59,6 +61,7 @@ public class GEN {
 		// gen_EIUFREQU(9, names3, 100000);
 		// gen_EIUFREQU(10, names3, 100000);
 
+		gen_KharkivH(1, 500, 500);
 	}
 
 	public static String randString(int minLen, int maxLen) {
@@ -74,10 +77,44 @@ public class GEN {
 		if (start == end) {
 			end++;
 		}
-		return start + (int) Math.floor(Math.random() * (end - start - 0.000001));
+		return start
+				+ (int) Math.floor(Math.random() * (end - start - 0.000001));
 	}
 
-	public static void gen_EIUFREQU(int id, String[] names, int n) throws Exception {
+	public static void gen_KharkivH(int id, int N, int M) throws IOException {
+		String root = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Codeforces\\";
+		String basePath = root + "";
+		String classPath = root + "bin\\";
+		String javaClass = "PA_AGrantiveOfScience";
+
+		String outPath = basePath + javaClass + "\\";
+		File theDir = new File(outPath);
+		theDir.mkdir();
+		String inFilename = outPath + id + ".in";
+		String outFilename = outPath + id + ".out";
+		FileWriter in = new FileWriter(inFilename);
+
+		StringBuffer inBuffer = new StringBuffer();
+		inBuffer.append(N + " " + M + "\r\n");
+		for (int i = 0; i < N; i++) {
+			int Ni = 500;
+			inBuffer.append(Ni + " ");
+			for (int j = 0; j < Ni; j++) {
+				inBuffer.append(randBetween(900, 999) + " ");
+			}
+			inBuffer.append("\r\n");
+		}
+
+		in.write(inBuffer.toString() + "\r\n");
+		in.close();
+
+		String command = "java -cp " + classPath + " " + javaClass + " < "
+				+ inFilename + " > " + outFilename;
+		System.out.println(command);
+	}
+
+	public static void gen_EIUFREQU(int id, String[] names, int n)
+			throws Exception {
 		String root = "D:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\";
 		String basePath = root + "EIUDSA14_Problemset_05\\";
 		String classPath = root + "bin\\";
@@ -100,11 +137,13 @@ public class GEN {
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
 
-		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
+		String command = "java -cp " + classPath + " " + javaClass + " < "
+				+ inFilename + " > " + outFilename;
 		System.out.println(command);
 	}
 
-	public static void gen_EIUAPPEA(int id, int n, int minRange, int maxRange) throws Exception {
+	public static void gen_EIUAPPEA(int id, int n, int minRange, int maxRange)
+			throws Exception {
 		String basePath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\MidTerm\\EIUAPPEA\\";
 		String classPath = "F:\\GitHub\\Programming2015\\Private\\Ngoc\\Spoj\\bin";
 		String javaClass = "EIUAPPEA";
@@ -124,7 +163,8 @@ public class GEN {
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
 
-		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
+		String command = "java -cp " + classPath + " " + javaClass + " < "
+				+ inFilename + " > " + outFilename;
 		System.out.println(command);
 	}
 
@@ -141,16 +181,20 @@ public class GEN {
 		inBuffer.append(n + "\r\n");
 		for (int i = 0; i < n; i++) {
 			int value = randBetween(-range, range);
-			if (value == 0) value = randBetween(-range, range);
-			if (value == 0) value = randBetween(-range, range);
-			if (value == 0) value = 1;
+			if (value == 0)
+				value = randBetween(-range, range);
+			if (value == 0)
+				value = randBetween(-range, range);
+			if (value == 0)
+				value = 1;
 			inBuffer.append(value + " ");
 		}
 
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
 
-		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
+		String command = "java -cp " + classPath + " " + javaClass + " < "
+				+ inFilename + " > " + outFilename;
 		System.out.println(command);
 	}
 
@@ -169,7 +213,8 @@ public class GEN {
 		in.write(inBuffer.toString() + "\r\n");
 		in.close();
 
-		String command = "java -cp " + classPath + " " + javaClass + " < " + inFilename + " > " + outFilename;
+		String command = "java -cp " + classPath + " " + javaClass + " < "
+				+ inFilename + " > " + outFilename;
 		System.out.println(command);
 	}
 }
