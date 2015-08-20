@@ -6,6 +6,7 @@
 	<classpathentry kind="src" path="K3/Lesson1"/>
 	<classpathentry kind="src" path="Amman"/>
 	<classpathentry kind="src" path="Kharkiv"/>
+	<classpathentry kind="src" path="USP-ICMC2015"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
