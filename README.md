@@ -1,3 +1,5 @@
+Moved to: https://github.com/EIU/CP2015
+
 ﻿Programming2015
 ===============
 Hà Minh Ngọc
